@@ -16,7 +16,7 @@ sudo apt-get install \
 	python-dev
 
 # Проверка существования папки с
-if [[ -d "${PACKAGESPATH}" ]]; 
+if [[ -d "${PACKAGESPATH}" ]]
 then
 	echo -e "\e[41mПапка уже существует\e[0m"
 	
@@ -43,7 +43,7 @@ echo -e "\e[47mСборка libplist...\e[0m"
 cd ${PACKAGESPATH}/libplist
 ./autogen.sh
 make	
-if [[ -f "${PACKAGESPATH}/libplist/Makefile" ]]; then
+if [[ -f "${PACKAGESPATH}/libplist/Makefile" ]]
 then
 	sudo make install	
 else
@@ -55,7 +55,7 @@ echo -e "\e[47mСборка libusbmuxd...\e[0m"
 cd ${PACKAGESPATH}/libusbmuxd
 ./autogen.sh
 make	
-if [[ -f "${PACKAGESPATH}/libusbmuxd/Makefile" ]]; then
+if [[ -f "${PACKAGESPATH}/libusbmuxd/Makefile" ]]
 then
 	sudo make install	
 else
@@ -67,7 +67,7 @@ echo -e "\e[47mСборка libimobiledevice...\e[0m"
 cd ${PACKAGESPATH}/libimobiledevice
 ./autogen.sh
 make	
-if [[ -f "${PACKAGESPATH}/libimobiledevice/Makefile" ]]; then
+if [[ -f "${PACKAGESPATH}/libimobiledevice/Makefile" ]]
 then
 	sudo make install	
 else
@@ -79,7 +79,7 @@ echo -e "\e[47mСборка usbmuxd...\e[0m"
 cd ${PACKAGESPATH}/usbmuxd
 ./autogen.sh
 make	
-if [[ -f "${PACKAGESPATH}/usbmuxd/Makefile" ]]; then
+if [[ -f "${PACKAGESPATH}/usbmuxd/Makefile" ]]
 then
 	sudo make install	
 else
@@ -91,7 +91,7 @@ echo -e "\e[47mСборка ios-webkit-debug-proxy...\e[0m"
 cd ${PACKAGESPATH}/ios-webkit-debug-proxy
 ./autogen.sh
 make	
-if [[ -f "${PACKAGESPATH}/ios-webkit-debug-proxy/Makefile" ]]; then
+if [[ -f "${PACKAGESPATH}/ios-webkit-debug-proxy/Makefile" ]]
 then
 	sudo make install	
 else
@@ -102,4 +102,4 @@ sudo ldconfig
 
 echo -e "\e[47mУстановка remotedebug-ios-webkit-adapter\e[0m"
 
-npm install remotedebug-ios-webkit-adapter -g
+sudo npm install remotedebug-ios-webkit-adapter -g
