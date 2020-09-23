@@ -1,6 +1,6 @@
 #!/bin/bash
 PACKAGESDIR=packages
-PACKAGESPATH=$(pwd)/${TOOLSDIR}
+PACKAGESPATH=$(pwd)/${PACKAGESDIR}
 
 sudo apt update
 sudo apt-get install \
