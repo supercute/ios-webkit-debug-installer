@@ -6,6 +6,8 @@ sudo apt update
 sudo apt-get install \
 	build-essential \
 	checkinstall \
+	nodejs \
+	npm \
 	git \
 	autoconf \
 	automake \
@@ -40,7 +42,7 @@ export LD_LIBRARY_PATH=/usr/local/lib
 
 echo -e "\e[47mСборка libplist...\e[0m"
 
-cd ${PACKAGESPATH}/libplist
+cd "${PACKAGESPATH}/libplist"
 ./autogen.sh
 make	
 if [[ -f "${PACKAGESPATH}/libplist/Makefile" ]]
@@ -52,7 +54,7 @@ fi
 
 echo -e "\e[47mСборка libusbmuxd...\e[0m"
 
-cd ${PACKAGESPATH}/libusbmuxd
+cd "${PACKAGESPATH}/libusbmuxd"
 ./autogen.sh
 make	
 if [[ -f "${PACKAGESPATH}/libusbmuxd/Makefile" ]]
@@ -64,7 +66,7 @@ fi
 
 echo -e "\e[47mСборка libimobiledevice...\e[0m"
 
-cd ${PACKAGESPATH}/libimobiledevice
+cd "${PACKAGESPATH}/libimobiledevice"
 ./autogen.sh
 make	
 if [[ -f "${PACKAGESPATH}/libimobiledevice/Makefile" ]]
@@ -76,7 +78,7 @@ fi
 
 echo -e "\e[47mСборка usbmuxd...\e[0m"
 
-cd ${PACKAGESPATH}/usbmuxd
+cd "${PACKAGESPATH}/usbmuxd"
 ./autogen.sh
 make	
 if [[ -f "${PACKAGESPATH}/usbmuxd/Makefile" ]]
@@ -88,7 +90,7 @@ fi
 
 echo -e "\e[47mСборка ios-webkit-debug-proxy...\e[0m"
 
-cd ${PACKAGESPATH}/ios-webkit-debug-proxy
+cd "${PACKAGESPATH}/ios-webkit-debug-proxy"
 ./autogen.sh
 make	
 if [[ -f "${PACKAGESPATH}/ios-webkit-debug-proxy/Makefile" ]]
