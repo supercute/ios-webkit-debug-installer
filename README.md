@@ -16,7 +16,7 @@
 
 ## Настройки подключения
 
-Запускаем службу usbmuxd ```sudo usbmuxd -v -f ```
+Запускаем службу usbmuxd ```sudo usbmuxd -v ```
 
 Подключаем устройство
 
@@ -34,7 +34,7 @@
 
 ## Настройки Chrome
 
-Переходим на ```chrome://inpect```
+Переходим на ```chrome://inspect```
 
 Добавляем localhost:9000 в **Discover network targets -> Configure**
 
