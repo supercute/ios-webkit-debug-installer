@@ -17,6 +17,33 @@ sudo apt-get install \
 	udev \
 	python-dev
 
+checkInstallPackage()
+{
+	if [ $(dpkg-query -W -f='${Status}' $1 2>/dev/null | grep -c "ok installed") -eq 0 ]
+	then
+		sudo apt install $1
+		return 1
+	else 
+		echo "$1 is installed"
+		return 0
+	fi
+}
+
+checkVersion()
+{
+	if [ command -v $1 >/dev/null 2>&1 || command -V $1 >/dev/null 2>&1 ]
+	then
+	    echo "$1 found"
+	    return 0
+	else
+	    echo "$1 not found"
+	    return 1
+	fi
+}
+
+
+checkInstallPackage python-dev
+
 # Проверка существования папки с
 if [[ -d "${PACKAGESPATH}" ]]
 then
@@ -50,6 +77,7 @@ then
 	sudo make install	
 else
 	echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/libplist/\e[0m"
+	exit 1
 fi
 
 echo -e "\e[47mСборка libusbmuxd...\e[0m"
@@ -62,6 +90,7 @@ then
 	sudo make install	
 else
 	echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/libusbmuxd/\e[0m"
+	exit 1
 fi
 
 echo -e "\e[47mСборка libimobiledevice...\e[0m"
@@ -74,18 +103,22 @@ then
 	sudo make install	
 else
 	echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/libimobiledevice/\e[0m"
+	exit 1
 fi
 
-echo -e "\e[47mСборка usbmuxd...\e[0m"
-
-cd "${PACKAGESPATH}/usbmuxd"
-./autogen.sh
-make	
-if [[ -f "${PACKAGESPATH}/usbmuxd/Makefile" ]]
+if checkVersion usbmuxd;
 then
-	sudo make install	
+	echo -e "\e[47musbmuxd Уже присутствует\e[0m"
 else
-	echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/usbmuxd/\e[0m"
+	cd "${PACKAGESPATH}/usbmuxd"
+	./autogen.sh
+	make	
+	if [[ -f "${PACKAGESPATH}/usbmuxd/Makefile" ]]
+	then
+		sudo make install	
+	else
+		echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/usbmuxd/\e[0m"
+	fi
 fi
 
 echo -e "\e[47mСборка ios-webkit-debug-proxy...\e[0m"
@@ -98,10 +131,16 @@ then
 	sudo make install	
 else
 	echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/ios-webkit-debug-proxy/\e[0m"
+	exit 1
 fi
 
 sudo ldconfig
 
 echo -e "\e[47mУстановка remotedebug-ios-webkit-adapter\e[0m"
 
-sudo npm install remotedebug-ios-webkit-adapter -g
+if checkVersion npm;
+then
+	npm install remotedebug-ios-webkit-adapter -g
+else
+	sudo npm install remotedebug-ios-webkit-adapter -g
+fi
