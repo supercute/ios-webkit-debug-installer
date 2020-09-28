@@ -41,6 +41,17 @@ checkVersion()
 	fi
 }
 
+checkMakeFile()
+{
+	if [[ -f "${PACKAGESPATH}/$1/Makefile" ]]
+	then
+		return 0	
+	else
+		echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/$1/\e[0m"
+		exit 1
+	fi
+}
+
 
 checkInstallPackage python-dev
 
@@ -85,12 +96,9 @@ echo -e "\e[47mСборка libusbmuxd...\e[0m"
 cd "${PACKAGESPATH}/libusbmuxd"
 ./autogen.sh
 make	
-if [[ -f "${PACKAGESPATH}/libusbmuxd/Makefile" ]]
+if checkMakeFile libusbmuxd
 then
 	sudo make install	
-else
-	echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/libusbmuxd/\e[0m"
-	exit 1
 fi
 
 echo -e "\e[47mСборка libimobiledevice...\e[0m"
@@ -98,12 +106,9 @@ echo -e "\e[47mСборка libimobiledevice...\e[0m"
 cd "${PACKAGESPATH}/libimobiledevice"
 ./autogen.sh
 make	
-if [[ -f "${PACKAGESPATH}/libimobiledevice/Makefile" ]]
+if checkMakeFile libimobiledevice
 then
 	sudo make install	
-else
-	echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/libimobiledevice/\e[0m"
-	exit 1
 fi
 
 if checkVersion usbmuxd;
@@ -113,11 +118,9 @@ else
 	cd "${PACKAGESPATH}/usbmuxd"
 	./autogen.sh
 	make	
-	if [[ -f "${PACKAGESPATH}/usbmuxd/Makefile" ]]
+	if checkMakeFile usbmuxd
 	then
 		sudo make install	
-	else
-		echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/usbmuxd/\e[0m"
 	fi
 fi
 
@@ -126,12 +129,9 @@ echo -e "\e[47mСборка ios-webkit-debug-proxy...\e[0m"
 cd "${PACKAGESPATH}/ios-webkit-debug-proxy"
 ./autogen.sh
 make	
-if [[ -f "${PACKAGESPATH}/ios-webkit-debug-proxy/Makefile" ]]
+if checkMakeFile ios-webkit-debug-proxy
 then
 	sudo make install	
-else
-	echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/ios-webkit-debug-proxy/\e[0m"
-	exit 1
 fi
 
 sudo ldconfig
