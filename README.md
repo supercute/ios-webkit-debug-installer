@@ -2,12 +2,33 @@
 
 ## Установка через bash скрипт
 
-Клонируем текущий репозиторий ```git clone git@gitlab.machaon-dev.ru:shumskih/ios-webkit-debug.git```
+Клонируем  репозиторий ```git clone git@gitlab.machaon-dev.ru:shumskih/ios-webkit-debug.git```
 
 Заходим в папку ```cd ios-webkit-debug```
 
 Запускаем установщик ```./ios-webkit-debug.sh```
 
+## Самостоятельная сборка из исходников 
+
+Собираем самостоятельно из нескольких репозиториев, все репозитории в аккаунте https://github.com/libimobiledevice
+
+Порядок сборки: 
+
+**1. libplist**
+
+**2. libusbmuxd**
+
+**3. libimobiledevice**
+
+**4. usbmuxd (если не работает в системе)**
+
+**5. ios-webkit-debug-proxy**
+
+Для сборки дополнительно понадобится пакет **python-dev**
+
+Если возникает ошибка ```ios_webkit_debug_proxy: error while loading shared libraries: libimobiledevice.so.6: cannot open shared object file: No such file or directory```
+
+Запустите ```sudo ldconfig```, либо ```export LD_LIBRARY_PATH=/usr/local/lib```
 ## Настройки устройства (iphone, ipad and other)
 
 Включаем **Настройки -> Safari -> Дополнения -> Веб инспектор**
