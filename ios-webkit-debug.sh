@@ -83,13 +83,11 @@ echo -e "\e[47mСборка libplist...\e[0m"
 cd "${PACKAGESPATH}/libplist"
 ./autogen.sh
 make	
-if [[ -f "${PACKAGESPATH}/libplist/Makefile" ]]
+if checkMakeFile libplist
 then
 	sudo make install	
-else
-	echo -e "\e[41mОтсутствует Makefile в ${PACKAGESPATH}/libplist/\e[0m"
-	exit 1
 fi
+echo -e "\e[42mlibplist установлен\e[0m"
 
 echo -e "\e[47mСборка libusbmuxd...\e[0m"
 
@@ -100,6 +98,7 @@ if checkMakeFile libusbmuxd
 then
 	sudo make install	
 fi
+echo -e "\e[42mlibusbmuxd установлен\e[0m"
 
 echo -e "\e[47mСборка libimobiledevice...\e[0m"
 
@@ -110,6 +109,7 @@ if checkMakeFile libimobiledevice
 then
 	sudo make install	
 fi
+echo -e "\e[42mlibimobiledevice установлен\e[0m"
 
 if checkVersion usbmuxd;
 then
@@ -122,6 +122,7 @@ else
 	then
 		sudo make install	
 	fi
+	echo -e "\e[42mlusbmuxd установлен\e[0m"
 fi
 
 echo -e "\e[47mСборка ios-webkit-debug-proxy...\e[0m"
@@ -133,6 +134,7 @@ if checkMakeFile ios-webkit-debug-proxy
 then
 	sudo make install	
 fi
+echo -e "\e[42ios-webkit-debug-proxy установлен\e[0m"
 
 sudo ldconfig
 
@@ -141,6 +143,8 @@ echo -e "\e[47mУстановка remotedebug-ios-webkit-adapter\e[0m"
 if checkVersion npm;
 then
 	npm install remotedebug-ios-webkit-adapter -g
+	echo -e "\e[42remotedebug-ios-webkit-adapter установлен\e[0m"
 else
 	sudo npm install remotedebug-ios-webkit-adapter -g
+	echo -e "\e[42remotedebug-ios-webkit-adapter установлен\e[0m"
 fi
