@@ -24,7 +24,7 @@ checkInstallPackage()
 		sudo apt install $1
 		return 1
 	else 
-		echo "$1 is installed"
+		echo -e "\e[47m$1 уже установлен\e[0m"
 		return 0
 	fi
 }
@@ -33,10 +33,10 @@ checkVersion()
 {
 	if [ command -v $1 >/dev/null 2>&1 || command -V $1 >/dev/null 2>&1 ]
 	then
-	    echo "$1 found"
+	    echo -e "\e[42m$1 найден\e[0m"
 	    return 0
 	else
-	    echo "$1 not found"
+	    echo -e "\e[41m$1 не найден\e[0m"
 	    return 1
 	fi
 }
