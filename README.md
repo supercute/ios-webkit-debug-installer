@@ -1,4 +1,4 @@
-# Установка IOS Webkit Debug для отладки IOS устройств на Linux
+# Установка IOS Webkit Debug для отладки IOS устройств на Linux старых версий
 
 ## Установка через bash скрипт
 
