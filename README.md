@@ -2,7 +2,7 @@
 
 ## Установка через bash скрипт
 
-Клонируем  репозиторий ```git clone git@gitlab.machaon-dev.ru:shumskih/ios-webkit-debug.git```
+Клонируем  репозиторий ```git clone https://github.com/supercute/ios-webkit-debug-installer.git```
 
 Заходим в папку ```cd ios-webkit-debug```
 
